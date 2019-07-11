@@ -12,7 +12,7 @@ const Product = models.product;
 const Review = models.review;
 
 // create category - FULL OK
-app.post("/category/create", async (req, res) => {
+router.post("/category/create", async (req, res) => {
 	const title = req.body.title.toLowerCase();
 	const description = req.body.description;
 	const departmentKey = req.body.departmentKey;
@@ -44,7 +44,7 @@ app.post("/category/create", async (req, res) => {
 });
 
 // read category - FULL OK
-app.get("/category", async (req, res) => {
+router.get("/category", async (req, res) => {
 	try {
 		const results = await Category.find().populate("department");
 		res.json(results);
@@ -54,7 +54,7 @@ app.get("/category", async (req, res) => {
 });
 
 // update category - FULL OK
-app.post("/category/update", async (req, res) => {
+router.post("/category/update", async (req, res) => {
 	const title = req.body.title.toLowerCase();
 	const description = req.body.description;
 	const newDepId = req.body.newDepId;
@@ -82,7 +82,7 @@ app.post("/category/update", async (req, res) => {
 });
 
 // delete category and attached products - FULL OK
-app.post("/category/delete", async (req, res) => {
+router.post("/category/delete", async (req, res) => {
 	try {
 		const catId = req.query.id;
 		const category = await Category.findOne({ _id: catId }).remove();
@@ -92,3 +92,5 @@ app.post("/category/delete", async (req, res) => {
 		console.log(error.message);
 	}
 });
+
+module.exports = router;
