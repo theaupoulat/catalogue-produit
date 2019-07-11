@@ -11,7 +11,7 @@ const Category = models.category;
 const Product = models.product;
 const Review = models.review;
 
-app.post("/department/create", async (req, res) => {
+router.post("/department/create", async (req, res) => {
 	const title = req.body.title.toLowerCase();
 	const result = new Department({
 		title: title
@@ -37,7 +37,7 @@ app.post("/department/create", async (req, res) => {
 });
 
 // read Departments - FULL OK
-app.get("/department", async (req, res) => {
+router.get("/department", async (req, res) => {
 	try {
 		const result = await Department.find();
 		res.json(result);
@@ -51,7 +51,7 @@ app.get("/department", async (req, res) => {
 });
 
 // update Department - FULL OK
-app.post("/department/update", async (req, res) => {
+router.post("/department/update", async (req, res) => {
 	const depId = req.query.id;
 	const title = req.body.title.toLowerCase();
 
@@ -68,7 +68,7 @@ app.post("/department/update", async (req, res) => {
 });
 
 // delete Department and attached products and categories - FULL OK
-app.post("/department/delete", async (req, res) => {
+router.post("/department/delete", async (req, res) => {
 	const depId = req.query.id;
 
 	try {
@@ -115,3 +115,5 @@ app.post("/department/delete", async (req, res) => {
 		}); */
 	} catch (error) {}
 });
+
+module.exports = router;

@@ -12,7 +12,7 @@ const Product = models.product;
 const Review = models.review;
 
 // create products - FULL OK
-app.post("/product/create", async (req, res) => {
+router.post("/product/create", async (req, res) => {
 	const title = req.body.title.toLowerCase();
 	const description = req.body.description;
 	const price = req.body.price;
@@ -48,7 +48,7 @@ app.post("/product/create", async (req, res) => {
 });
 
 // read products - FULL OK
-app.get("/product", async (req, res) => {
+router.get("/product", async (req, res) => {
 	const category = req.query.category;
 	const title = req.query.title; // Regex Builder Needed
 	const page = Number(req.query.page);
@@ -129,7 +129,7 @@ app.get("/product", async (req, res) => {
 });
 
 // update products - FULL OK
-app.post("/product/update", async (req, res) => {
+router.post("/product/update", async (req, res) => {
 	const title = req.body.title;
 	const description = req.body.description;
 	const price = req.body.price;
@@ -160,7 +160,7 @@ app.post("/product/update", async (req, res) => {
 });
 
 // delete products - FULL OK
-app.post("/product/delete", async (req, res) => {
+router.post("/product/delete", async (req, res) => {
 	const product = await Product.findOne({ _id: req.query.id });
 	if (product) {
 		await product.remove();
@@ -169,3 +169,5 @@ app.post("/product/delete", async (req, res) => {
 		res.status(400).json({ error: { message: "Product not found" } });
 	}
 });
+
+module.exports = router;

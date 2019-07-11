@@ -12,7 +12,7 @@ const Product = models.product;
 const Review = models.review;
 
 // create a review, that updates the product rating and reviews - BASIC OK
-app.post("/review/create", async (req, res) => {
+router.post("/review/create", async (req, res) => {
 	const productId = req.body.productId;
 	const rating = req.body.rating;
 	const comment = req.body.comment;
@@ -51,7 +51,7 @@ app.post("/review/create", async (req, res) => {
 });
 
 // update a review with update on the product rating if needed - BASIC OK
-app.post("/review/update", async (req, res) => {
+router.post("/review/update", async (req, res) => {
 	const reviewId = req.query.id;
 	const rating = req.body.rating;
 	const comment = req.body.comment;
@@ -88,7 +88,7 @@ app.post("/review/update", async (req, res) => {
 });
 
 //delete review - BASIC OK
-app.post("/review/delete", async (req, res) => {
+router.post("/review/delete", async (req, res) => {
 	const reviewId = req.query.id;
 	console.log("I am here");
 
@@ -123,3 +123,5 @@ app.post("/review/delete", async (req, res) => {
 
 	//delete from product and recalculate
 });
+
+module.exports = router;
